@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="img/favicon.png" type="image/png">
+	<title>MOOC Final Project</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="vendors/linericon/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="vendors/lightbox/simpleLightbox.css">
+	<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="vendors/animate-css/animate.css">
+	<!-- main css -->
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		/* --- Card Stack Styles --- */
+		.game_cards_area {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color: #f4f4f4;
+			padding-top: 60px; /* Reduced top padding */
+			padding-bottom: 120px; /* Keep bottom padding */
+		}
+
+		#shuffleButton { /* This button will be hidden */
+			padding: 10px 20px;
+			font-size: 16px;
+			margin-bottom: 30px;
+			cursor: pointer;
+			background-color: #3498db;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			display: none;
+		}
+
+		.card-stack {
+			position: relative;
+			width: 100%; /* Make stack container wider for the line layout */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 30px; /* This sets the space between the cards */
+			height: 400px;
+		}
+
+		.card-stack .card {
+			position: relative; /* Changed to relative for flexbox */
+			width: 250px;
+			height: 350px;
+			background-color: #ecf0f1;
+			border-radius: 15px;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+			display: flex;
+			flex-direction: column; /* Stack title and text vertically */
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			cursor: pointer;
+			transition: transform 0.6s ease-in-out, top 0.6s ease-in-out, left 0.6s ease-in-out;
+			user-select: none;
+			padding: 20px;
+			box-sizing: border-box;
+		}
+
+		/* --- Custom Card Designs --- */
+		.card-stack .card.card-design {
+			position: relative;
+			z-index: 1;
+			background-size: cover; /* Make the image cover the card */
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		/* Paths to your images */
+		.card-design-1 { background-image: url('img/cards/card-1.png'); }
+		.card-design-2 { background-image: url('img/cards/card-2.png'); }
+		.card-design-3 { background-image: url('img/cards/card-3.png'); }
+		.card-design-4 { background-image: url('img/cards/card-4.png'); }
+
+
+		/* --- Modal Styles --- */
+		.modal#cardModal {
+			display: none;
+			position: fixed;
+			z-index: 1050; /* Higher than Bootstrap's default */
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+
+		.modal-content {
+			background-color: #fff;
+			margin: 10% auto; /* 10% from the top and centered */
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%; /* Could be more or less, depending on screen size */
+			max-width: 810px; /* Increased by 35% from 600px */
+			border-radius: 10px;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+		}
+
+		/* --- Logo Size Adjustment --- */
+		.navbar-brand img {
+			max-height: 50px; /* Adjust this value as needed */
+			width: auto;
+		}
+	</style>
+	<style>
+		/* --- Author Image Size --- */
+		.author_widget .author_img {
+			width: 120px;
+			height: 120px;
+		}
+
+		/* --- Section Spacing Adjustment --- */
+		.section_gap {
+			padding-top: 78px;
+			padding-bottom: 78px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!--================Header Menu Area =================-->
+	<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand" href="index.html"><img src="img/logo.png" alt=""></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="navbarSupportedContent" style="flex-grow: 0;">
+						<a class="nav-link" href="index.html" style="color: black; padding: 0;"><h2 style="margin-bottom: 0.25em;">MOOC Conversation Auxiliaries 2025-2026</h2></a>
+						<!-- <ul class="nav navbar-nav menu_nav">
+							<li class="nav-item active"><a class="nav-link" href="index.html" style="color: black; padding: 0;"><h2 style="margin-bottom: 0.25em;">MOOC Conversation Auxiliaries 2025-2026</h2></a></li>
+						</ul> -->
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!--================Header Menu Area =================-->
+
+	<!--================Home Banner Area =================-->
+	<section class="banner_area">
+		<div class="banner_inner container-fluid d-flex align-items-center justify-content-end">
+			<div class="banner_content text-right">
+				<h1>Improving Oral Fluency through Debating and Games</h1>
+				<div class="page_link">
+					<a href="index.html">MOOC Final Project</a>
+					<a href="index.html">Pedagogical Strategy</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Home Banner Area =================-->
+
+	<!--================Game Cards Area =================-->
+	<section class="game_cards_area section_gap">
+		<div class="container">
+			<div class="col-lg-12 text-center">
+				<h2 class="mb-5">Interactive Game-Based Learning</h2>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<button id="shuffleButton">Shuffle Cards</button>
+	
+			<div id="cardStack" class="card-stack">
+				<!-- Cards will be dynamically inserted here by JavaScript -->
+			</div>
+			<div class="col-lg-12 text-center" style="margin-top: 20px;">
+				<p>Select a card to learn more.</p>
+			</div>
+		</div>
+	</section>
+	<!--================End Game Cards Area =================-->
+
+	<!--================Blog Area =================-->
+	<section class="blog_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="blog_left_sidebar">
+						<!-- Background Post -->
+						<article class="row blog_item">
+							<div class="col-md-12">
+								<div class="blog_post">
+									<div class="blog_details">
+										<a href="#">
+											<h2>The Challenge: Moving Beyond Rote Memorization</h2>
+										</a>
+										<p>In many language learning environments, students become proficient at prepared speeches and rote memorization, but struggle with spontaneous, authentic conversation. The challenge is to bridge the gap between passive knowledge and active fluency. This project addresses that challenge by implementing dynamic, interactive activities that simulate real-world communication scenarios.</p>
+										<p>The pedagogical framework is inspired by debate and public speaking models like Model United Nations (MUN), where participants must think on their feet, articulate arguments clearly, and respond to unexpected points. By adapting these principles for the language classroom, we can create an environment that fosters not just linguistic accuracy, but also conversational agility and confidence.</p>
+										<p>This approach draws heavily from the methodologies of the Global Classroom program, which specializes in such interactive learning experiences. The activities in this case study, from structured rebuttals to creative impersonations, are designed to systematically build the skills required for effective, unprepared oral discourse. The goal is to equip students with the tools to handle the pressure of real-time conversation and develop true communicative competence.</p>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Activities Post -->
+						<article class="row blog_item">
+							<div class="col-md-12">
+								<div class="blog_post">
+									<div class="blog_details">
+										<a href="#">
+											<h2>A Toolkit of Speaking Games</h2>
+										</a>
+										<p>This case study focuses on four dynamic games, each designed to target a specific set of conversational skills in a fun and engaging way.</p>
+										<ul class="list-disc" style="list-style-position: inside;">
+											<li><strong>If I Ruled the World:</strong> A creative icebreaker that doubles as a memory challenge, perfect for practicing conditional clauses and building rapport.</li>
+											<li><strong>I Couldn’t Disagree More:</strong> A fast-paced game of rebuttal that trains students to build arguments and justify their opinions under pressure.</li>
+											<li><strong>Point of Information Game:</strong> A formal debate simulation that teaches students how to gracefully handle interruptions and think on their feet.</li>
+											<li><strong>Balloon Debates:</strong> A role-playing game that encourages persuasive storytelling and creative argumentation.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Objectives Post -->
+						<article class="row blog_item">
+							<div class="col-md-12">
+								<div class="blog_post">
+									<div class="blog_details">
+										<a href="#">
+											<h2>Activity Objectives</h2>
+										</a>
+										<p>The primary goals were to improve oral fluency and confidence in speaking English. Key objectives included developing quick thinking, strengthening listening and memory skills, practicing the expression and justification of opinions, improving argumentation, encouraging collaboration among students, and fostering creativity in communication.</p>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Development Post -->
+						<article class="row blog_item">
+							<div class="col-md-12">
+								<div class="blog_post">
+									<div class="blog_details">
+										<a href="#">
+											<h2>Development</h2>
+										</a>
+										<h4>Preparation Before Execution</h4>
+										<p>Thorough preparation was key. This involved reviewing and adapting game rules for clarity, selecting engaging topics, and preparing role cards. The classroom was arranged to facilitate interaction, and necessary materials like timers and prompts were prepared in coordination with the subject teacher.</p>
+										<h4>Activity Development</h4>
+										<p>All four activities were successfully carried out during English and History Class with teacher support. The execution involved various formats, including students standing in a circle for introductions, working in pairs for debates, teacher modeling for demonstrating techniques, and class-wide voting for balloon debates.</p>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Support Post -->
+						<article class="row blog_item">
+							<div class="col-md-12">
+								<div class="blog_post">
+									<div class="blog_details">
+										<a href="#">
+											<h2>Support</h2>
+										</a>
+										<h4>Tools & Materials</h4>
+										<p>A variety of materials were used, including Global Classroom activities, custom printed role cards and statements, a timer/stopwatch for debates, a whiteboard/projector for instructions, and audio/video recordings for feedback.</p>
+										<h4>Classroom Integration</h4>
+										<p>The project was integrated into the curriculum by coordinating with the subject teacher and aligning the activities with the speaking units. This approach also supported the development of key competencies outlined in the LOMLOE framework.</p>
+										<h4>Attention to Diversity</h4>
+										<p>To ensure all students could participate effectively, various support mechanisms were in place. These included providing sentence starters and vocabulary lists, allowing stronger speakers to model responses, options for shorter contributions for shy students, and strategic grouping to balance skill levels.</p>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Assessment Post -->
+						<article class="row blog_item" style="margin-bottom: 30px;">
+							<div class="col-md-12">
+								<div class="blog_post">
+									<div class="blog_details">
+										<a href="#">
+											<h2>Assessment</h2>
+										</a>
+										<h4>Evaluation Criteria</h4>
+										<p>Students were assessed on the clarity/coherence of their English; ability to express/justify; listening skills; participation/engagement; ability to respond to rebuttals; respectful communication/teamwork.</p>
+										<h4>Assessment and Improvement Proposal</h4>
+										<p>Activities worked well, created energetic/supportive environment, students were highly engaged. Suggested Improvement: Future iterations could include a structured rubric for peer-assessment.</p>
+									</div>
+								</div>
+							</div>
+						</article>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="blog_right_sidebar">
+						<aside class="single_sidebar_widget author_widget">
+							<img class="author_img rounded-circle" src="img/blog/author.png" alt="">
+							<h4>Antonio Tagaruma</h4>
+							<p>Language Assistant</p>
+							<!-- TODO: Update these social media links -->
+							<div class="social_icon">
+								<a href="https://www.linkedin.com/in/antonio-tagaruma-a16728245/" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
+								<a href="https://github.com/antoniotagaruma8" target="_blank" rel="noopener noreferrer"><i class="fa fa-github"></i></a>
+								<a href="https://www.your-portfolio-website.com/"><i class="fa fa-briefcase"></i></a>
+							</div>
+							<p>Passionate about developing innovative pedagogical strategies that empower students and foster communicative confidence. This MOOC final project showcases a practical application of these methods.</p>
+							<div class="br"></div>
+						</aside>
+						<aside class="single_sidebar_widget post_category_widget">
+							<h4 class="widget_title">Project Application</h4>
+							<ul class="list cat-list">
+								<li><strong>School:</strong> IES Simone Veil</li>
+								<li><strong>School Code:</strong> (28077890)</li>
+								<li><strong>Location:</strong> Paracuellos de Jarama, Madrid</li>
+								<li><strong>Website:</strong> <a href="https://site.educa.madrid.org/ies.simoneveil.paracuellos/" target="_blank" rel="noopener noreferrer">educa.madrid.org</a></li>
+								<li><strong>Students Covered:</strong> 3º ESO (14-15 y/o)</li>
+							</ul>
+							
+						</aside>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================Blog Area =================-->
+
+	<!--================Game Modal =================-->
+    <div id="cardModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-body">
+                <div class="video-explainer">
+                    <h2 id="modalTitle"></h2>
+                    <!-- Placeholder for the video explainer -->
+                    <!-- Replace 'videos/your-video-file.mp4' with the actual path to your video -->
+                    <video width="100%" controls style="border-radius: 8px;">
+                        <source src="videos/your-video-file.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="game-details" id="modalDetail"></div>
+            </div>
+        </div>
+    </div>
+	<!--================End Game Modal =================-->
+
+	<!--================Footer Area =================-->
+	<footer class="footer_area section_gap">
+		<div class="container">
+			<div class="row footer_inner justify-content-center" style="text-align: left;">
+				<div class="col-lg-10">
+					<h4 class="text-center">References & Credits</h4>
+					<div class="row" style="margin-top: 40px;">
+						<div class="col-lg-6">
+							<h5>Pedagogical Resources</h5>
+							<ul class="list cat-list">
+								<li>Global Classroom Program: Methodologies for interactive learning.</li>
+								<li>Model United Nations (MUN): Framework for debate and public speaking.</li>
+								<li>LOMLOE Framework: Key competencies for student development.</li>
+							</ul>
+						</div>
+						<div class="col-lg-6">
+							<h5>Assets & Design</h5>
+							<ul class="list cat-list">
+								<li>Website Template designed by <a href="https://colorlib.com" target="_blank" rel="noopener noreferrer">Colorlib</a>.</li>
+								<li>Project created and developed by Antonio Tagaruma.</li>
+								<li>Video content scripted with the assistance of NotebookLM.</li>
+								<li>Card images and icons are placeholders for demonstration purposes.</li>
+							</ul>
+						</div>
+					</div>
+					<div class="copyright text-center" style="margin-top: 40px;">
+						<p>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+						<p style="margin-top: 20px; font-size: 12px; line-height: 1.5;">
+							This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit: <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">http://creativecommons.org/licenses/by-nc-sa/4.0/</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--================End Footer Area =================-->
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/stellar.js"></script>
+	<script src="vendors/lightbox/simpleLightbox.min.js"></script>
+	<script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+	<script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+	<script src="vendors/isotope/isotope-min.js"></script>
+	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/theme.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const cardStack = document.getElementById('cardStack');
+			const shuffleButton = document.getElementById('shuffleButton');
+			const modal = document.getElementById('cardModal');
+			const closeButton = document.querySelector('#cardModal .close-button');
+			const modalTitle = document.getElementById('modalTitle');
+			const modalDetail = document.getElementById('modalDetail');
+
+			const cardData = [
+				{ 
+					id: 1, 
+					title: 'If I Ruled the World', 
+					summary: 'A creative icebreaker that doubles as a memory challenge, perfect for practicing conditional clauses and building rapport.',
+					videoSrc: 'videos/game1_explainer.mp4', // Video for Game 1
+					detail: `
+						<h4 class="mt-3">1. Context and Coordination</h4>
+						<p><strong>Activity Performed:</strong> "If I Ruled the World" was implemented as a dynamic warm-up and fluency-building game. It was particularly effective when aligned with grammar units on conditional tenses. A circular seating arrangement proved essential, as it fostered a collaborative environment and allowed the memory chain aspect of the game to function effectively.</p>
+						<h4 class="mt-3">2. Student Engagement and Fluency</h4>
+						<p><strong>Engagement Level:</strong> The activity generated exceptionally high levels of engagement. Students embraced the creative freedom and the cognitive challenge of remembering the growing list of "decrees." A visible boost in confidence was observed as they successfully recited the chain. The game proved highly effective at promoting spontaneous speech, requiring students to recall information and construct sentences in real-time.</p>
+						<h4 class="mt-3">3. Addressing Diversity and Support</h4>
+						<p><strong>Effectiveness of Support:</strong> Providing a clear sentence starter ("If I ruled the world, I would...") was a powerful tool, offering a scaffold for less confident students. More advanced speakers naturally modeled complex sentences, which peers then attempted to emulate. The game's collaborative nature meant that students organically supported each other in remembering the sequence.</p>
+						<h4 class="mt-3">4. Professional Reflection and Iteration</h4>
+						<p><strong>Key Takeaway:</strong> This activity is a powerful tool for ensuring universal participation and practical application of conditional tenses in a low-stakes, high-energy context.
+						<br><strong>Identified Challenge:</strong> In larger groups (10+ students), cognitive load became a significant barrier, leading to frustration for some participants as they struggled to recall the entire chain.
+						<br><strong>Actionable Improvement:</strong> Future implementations should utilize smaller, parallel groups of 5-6 students. This modification will maintain a manageable memory load and significantly increase the number of individual speaking opportunities.</p>
+					`
+				},
+				{ 
+					id: 2, 
+					title: 'I Couldn’t Disagree More', 
+					summary: 'A fast-paced game of rebuttal that trains students to build arguments and justify their opinions under pressure.',
+					videoSrc: 'videos/game2_explainer.mp4', // Video for Game 2
+					detail: `
+						<h4 class="mt-3">1. Context and Coordination</h4>
+						<p><strong>Activity Performed:</strong> This activity was integrated into a debate unit, using controversial statements on role cards to spark discussion. Arranging students in facing pairs was a simple but powerful choice that fostered a sense of direct, focused argumentation.</p>
+						<h4 class="mt-3">2. Student Engagement and Fluency</h4>
+						<p><strong>Engagement Level:</strong> The game's competitive nature created a highly motivated environment. Students were driven to defend their assigned viewpoints and actively challenge their partners. It proved exceptionally successful at pushing them beyond prepared remarks and into the realm of spontaneous critical thinking, significantly strengthening their rebuttal and justification skills.</p>
+						<h4 class="mt-3">3. Addressing Diversity and Support</h4>
+						<p><strong>Effectiveness of Support:</strong> A pre-taught, visible vocabulary list of phrases for agreement, disagreement, and justification was an essential anchor for students. The strategy of initially pairing students of similar fluency levels proved effective for confidence-building before introducing more mixed groupings.</p>
+						<h4 class="mt-3">4. Professional Reflection and Iteration</h4>
+						<p><strong>Key Takeaway:</strong> This activity provides a structured, high-energy framework for teaching the core components of argumentation and justification.
+						<br><strong>Identified Challenge:</strong> The primary logistical issue was managing pacing, as some pairs concluded their debates far more quickly than others. Additionally, a few discussions veered into personal opinion rather than structured argumentation.
+						<br><strong>Actionable Improvement:</strong> To address pacing, a set of "extension statements" will be prepared for pairs who finish early. Furthermore, future sessions will begin with a concise (2-minute) pre-briefing on the principles of respectful, evidence-based debate to maintain focus.</p>
+					`
+				},
+				{ 
+					id: 3, 
+					title: 'Point of Information Game', 
+					summary: 'A formal debate simulation that teaches students how to gracefully handle interruptions and think on their feet.',
+					videoSrc: 'videos/game3_explainer.mp4', // Video for Game 3
+					detail: `
+						<h4 class="mt-3">1. Context and Coordination</h4>
+						<p><strong>Activity Performed:</strong> This game was used to introduce formal debate procedures, with teacher modeling proving crucial for initial comprehension. Simulating a parliamentary-style debate by arranging the class into two opposing lines effectively set the stage for structured interaction.</p>
+						<h4 class="mt-3">2. Student Engagement and Fluency</h4>
+						<p><strong>Engagement Level:</strong> The initial excitement, bordering on chaos, quickly transformed into strategic thinking once the rules were internalized. The activity excelled at fostering concise, articulate, and quick-witted speech from both the primary speaker and the interrupter. A marked improvement in students' confidence in managing interruptions was a key outcome.</p>
+						<h4 class="mt-3">3. Addressing Diversity and Support</h4>
+						<p><strong>Effectiveness of Support:</strong> Sentence starters for both interrupting ("Point of Information on that specific point...") and declining ("I'll take your point in a moment, thank you") were indispensable. They provided a low-risk entry point for hesitant speakers, who were more comfortable participating in a structured manner.</p>
+						<h4 class="mt-3">4. Professional Reflection and Iteration</h4>
+						<p><strong>Key Takeaway:</strong> This activity is invaluable for teaching students how to maintain control and composure while managing audience interruptions in a formal speaking context.
+						<br><strong>Identified Challenge:</strong> The primary difficulty was maintaining game balance. At times, the focus shifted too heavily toward the act of interrupting, which prevented the main speaker from fully developing their arguments.
+						<br><strong>Actionable Improvement:</strong> To restore balance, the next iteration will introduce a new mechanic: each speaker will receive two "POI Blocker" cards. These cards can be used to non-verbally decline an interruption, compelling interrupters to be more strategic and empowering speakers to maintain narrative control.</p>
+					`
+				},
+				{ 
+					id: 4, 
+					title: 'Balloon Debates', 
+					summary: 'A role-playing game that encourages persuasive storytelling and creative argumentation.',
+					videoSrc: 'videos/game4_explainer.mp4', // Video for Game 4
+					detail: `
+						<h4 class="mt-3">1. Context and Coordination</h4>
+						<p><strong>Activity Performed:</strong> This served as a capstone activity, integrating skills of persuasion, impersonation, and argumentation. By assigning roles (famous people, professions), the debate was framed as a high-stakes performance, with students arguing for their survival in a falling hot air balloon.</p>
+						<h4 class="mt-3">2. Student Engagement and Fluency</h4>
+						<p><strong>Engagement Level:</strong> This activity consistently produced the highest engagement. The element of impersonation effectively lowered personal inhibitions, unlocking surprising levels of confidence and creativity. The core success was seeing students develop persuasive arguments spontaneously, demonstrating significant gains in fluency and responsive thinking.</p>
+						<h4 class="mt-3">3. Addressing Diversity and Support</h4>
+						<p><strong>Effectiveness of Support:</strong> Providing role cards with 2-3 suggested arguments was a critical scaffold for idea generation. Assigning more complex roles to stronger speakers allowed them to model sophisticated persuasive techniques. Crucially, the simple, anonymous voting mechanism ensured that every student had an active and equal voice in the outcome.</p>
+						<h4 class="mt-3">4. Professional Reflection and Iteration</h4>
+						<p><strong>Key Takeaway:</strong> The fusion of role-play and debate is a uniquely powerful method for building confidence and fluency. Students who are typically reserved often become highly animated and persuasive when speaking "in character."
+						<br><strong>Identified Challenge:</strong> The initial round of speeches suffered from a degree of repetition, with students defaulting to similar, simplistic arguments (e.g., "I save lives").
+						<br><strong>Actionable Improvement:</strong> To foster more dynamic interaction, the next iteration will include a mandatory "rebuttal round." In this round, each student must directly challenge another character's argument before presenting their own, promoting more active listening and responsive argumentation.</p>
+					`
+				},
+			];
+
+			function applyMessyStyle(cardElement) {
+				const rotation = (Math.random() * 20) - 10;
+				const offsetX = (Math.random() * 40) - 20;
+				const offsetY = (Math.random() * 40) - 20;
+
+				cardElement.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg)`;
+				cardElement.style.position = 'absolute'; // Set position for animation
+				cardElement.style.left = '50%';
+				cardElement.style.top = '50%';
+				cardElement.style.marginLeft = '-125px'; // Half of card width
+				cardElement.style.marginTop = '-175px';  // Half of card height
+			}
+
+			function applyLineLayout(cardElement, index, totalCards) {
+				// The flexbox properties on the parent now handle the alignment.
+				// We only need to set the transform for the shuffle animation reset.
+				cardElement.style.position = 'relative'; // Reset for flexbox
+				cardElement.style.transform = 'rotate(0deg)';
+				cardElement.style.top = ''; // Reset absolute positioning properties
+				cardElement.style.left = '';
+				cardElement.style.marginLeft = '';
+				cardElement.style.marginTop = '';
+			}
+
+
+			function renderCards() {
+				cardStack.innerHTML = ''; // Clear existing cards
+				cardData.forEach((data, index) => {
+					const card = document.createElement('div');
+					card.className = `card card-design card-design-${data.id}`;
+
+					card.dataset.id = data.id;
+					card.dataset.originalIndex = index; // Keep track of the card's original position
+					card.style.zIndex = index + 1;
+
+					applyLineLayout(card, index, cardData.length);
+
+					addCardClickListeners(card, data);
+					
+					cardStack.appendChild(card);
+				});
+			}
+
+			function shuffleCards(onComplete) {
+				cardStack.style.pointerEvents = 'none'; // Disable clicks during animation
+
+				const cards = Array.from(cardStack.querySelectorAll('.card'));
+
+				// 1. Animate all cards to a messy pile in the center
+				cards.forEach((card, index) => {
+					setTimeout(() => {
+						card.style.zIndex = index + 20; // Bring to front for animation
+						applyMessyStyle(card);
+					}, index * 50);
+				});
+
+				// 2. After a delay, shuffle the data and animate back to the line
+				setTimeout(() => {
+					// Shuffle the array of card elements
+					const shuffledCards = cards.sort(() => Math.random() - 0.5);
+
+					// Re-append the shuffled cards to the container and animate them back
+					shuffledCards.forEach((card, index) => {
+						// Animate back to its new line position
+						applyLineLayout(card, index, cards.length);
+						card.style.zIndex = index + 1;
+						
+						// Append to the DOM in the new shuffled order
+						cardStack.appendChild(card);
+					});
+
+					cardStack.style.pointerEvents = 'auto'; // Re-enable clicks
+					if (onComplete) {
+						onComplete();
+					}
+				}, (cards.length * 50) + 900); // Wait for pile animation to finish + a pause
+			}
+
+			function addCardClickListeners(card, data) {
+				const openModal = (event) => {
+					event.stopPropagation(); // Prevent the shuffle from triggering
+					showCardDetails(data);
+				};
+				// Add listeners for both click and touch
+				card.addEventListener('click', openModal);
+				card.addEventListener('touchstart', (event) => {
+					openModal(event);
+					event.preventDefault(); // Prevents firing a 'click' event afterward
+				});
+			}
+
+			function showCardDetails(data) {
+				modalTitle.textContent = data.title;
+				modalDetail.innerHTML = data.detail; // Use innerHTML for rich text
+
+				const videoPlayer = document.querySelector('#cardModal video');
+				const videoSource = videoPlayer.querySelector('source');
+				videoSource.setAttribute('src', data.videoSrc);
+				videoPlayer.load(); // Important: This tells the player to load the new source
+
+				modal.style.display = 'block';
+				const modalContent = modal.querySelector('.modal-content');
+				modalContent.classList.add('animated', 'zoomIn');
+				modalContent.addEventListener('animationend', () => {
+					modalContent.classList.remove('animated', 'zoomIn');
+				}, { once: true });
+			}
+
+			function hideModal() {
+				const modalContent = modal.querySelector('.modal-content');
+				modalContent.classList.add('animated', 'zoomOut');
+				modalContent.addEventListener('animationend', () => {
+					modal.style.display = 'none';
+					modalContent.classList.remove('animated', 'zoomOut');
+				}, { once: true });
+			}
+
+			let isShuffling = false;
+			let shuffleCooldownUntil = 0;
+			const SHUFFLE_COOLDOWN = 15 * 60 * 1000; // 15 minutes in milliseconds
+
+			renderCards();
+
+			// For mouse users, shuffle twice when the pointer glides over the card area
+			cardStack.addEventListener('mouseenter', () => {
+				const now = new Date().getTime();
+				if (isShuffling || now < shuffleCooldownUntil) {
+					return;
+				}
+				isShuffling = true;
+
+				shuffleCards(() => {
+					// After the first shuffle, run the second one
+					shuffleCards(() => {
+						// Sequence complete. Set cooldown and reset shuffling state.
+						shuffleCooldownUntil = new Date().getTime() + SHUFFLE_COOLDOWN;
+						isShuffling = false;
+					});
+				});
+			});
+
+			// For touch users, handle the "glide" or "swipe" gesture
+			cardStack.addEventListener('touchmove', (event) => {
+				const now = new Date().getTime();
+				// Trigger shuffle once per swipe gesture
+				if (isShuffling || now < shuffleCooldownUntil) {
+					return;
+				}
+				isShuffling = true;
+
+				shuffleCards(() => {
+					// After one shuffle, re-enable for the next touch gesture
+					shuffleCards(() => {
+						shuffleCooldownUntil = new Date().getTime() + SHUFFLE_COOLDOWN;
+						isShuffling = false;
+					});
+				});
+			});
+
+			closeButton.addEventListener('click', hideModal);
+			window.addEventListener('click', (event) => {
+				if (event.target == modal) {
+					hideModal();
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

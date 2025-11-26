@@ -1,0 +1,22 @@
+/*================Home Banner Area =================*/
+.banner_area {
+	position: relative;
+	z-index: 1;
+	min-height: 40vh;
+	display: flex;
+	align-items: center;
+	background: #f8b600;
+	background: -moz-linear-gradient(90deg, #f8b600 0%, #f8b600 40%, #fde082 100%);
+	background: -webkit-linear-gradient(90deg, #f8b600 0%, #f8b600 40%, #fde082 100%);
+	background: linear-gradient(90deg, #f8b600 0%, #f8b600 40%, #fde082 100%);
+}
+
+.banner_inner {
+	width: 100%;
+}
+
+.banner_content h1 {
+	color: #fff;
+	font-size: 80px; /* Increased font size */
+	font-weight: 900; /* Made text bolder */
+}

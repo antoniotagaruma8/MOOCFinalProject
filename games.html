@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="img/favicon.png" type="image/png">
+	<title>MOOC Final Project - Games</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="vendors/linericon/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="vendors/lightbox/simpleLightbox.css">
+	<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="vendors/animate-css/animate.css">
+	<!-- main css -->
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		.game-card {
+			cursor: pointer;
+			border: 1px solid #eee;
+			border-radius: 5px;
+			padding: 20px;
+			margin-bottom: 20px;
+			transition: all 0.3s ease-in-out;
+		}
+
+		.game-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		}
+	</style>
+</head>
+
+<body>
+
+	<!--================Header Menu Area =================-->
+	<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand" href="index.html"><img src="img/logo.png" alt=""></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav justify-content-end">
+							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
+							<li class="nav-item submenu dropdown active">
+								<a class="nav-link" href="portfolio.html">Portfolio</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+									<li class="nav-item"><a class="nav-link" href="portfolio-details.html">Portrfolio Details</a></li>
+								</ul>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!--================Header Menu Area =================-->
+
+	<!--================Home Banner Area =================-->
+	<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div class="banner_content text-right">
+					<h1>Our Games</h1>
+					<div class="page_link">
+						<a href="index.html">Home</a>
+						<a href="games.html">Games</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Home Banner Area =================-->
+
+	<!--================Interactive Games Area =================-->
+	<section class="interactive_games_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="main_title">
+						<h2>Our Interactive Games</h2>
+						<p>Click on a game to see the details and a video.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<button id="shuffle-button" class="btn btn-primary mb-4">Shuffle Cards</button>
+				</div>
+			</div>
+
+			<div id="game-cards-container" class="row">
+				<!-- Game cards will be inserted here by JavaScript -->
+			</div>
+		</div>
+	</section>
+	<!--================End Interactive Games Area =================-->
+
+	<!-- Game Details Modal -->
+	<div class="modal fade" id="game-details-modal" tabindex="-1" role="dialog" aria-labelledby="game-details-modal-label" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="game-details-modal-label">Game Details</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h3 id="modal-game-title"></h3>
+					<p id="modal-game-description"></p>
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe id="modal-game-video" class="embed-responsive-item" src="" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--================Footer Area =================-->
+	<footer class="footer_area section_gap">
+		<div class="container">
+			<div class="row footer_inner justify-content-center">
+				<div class="col-lg-6 text-center">
+					<aside class="f_widget social_widget">
+						<div class="f_logo">
+							<img src="img/logo.png" alt="">
+						</div>
+						<div class="f_title">
+							<h4>Follow Me</h4>
+						</div>
+						<ul class="list">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+							<li><a href="#"><i class="fa fa-behance"></i></a></li>
+						</ul>
+					</aside>
+					<div class="copyright">
+						<p>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--================End Footer Area =================-->
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/stellar.js"></script>
+	<script src="vendors/lightbox/simpleLightbox.min.js"></script>
+	<script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+	<script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+	<script src="vendors/isotope/isotope-min.js"></script>
+	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/theme.js"></script>
+	<script src="js/games.js"></script>
+</body>
+
+</html>
