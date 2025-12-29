@@ -350,6 +350,9 @@
                         <source src="videos/your-video-file.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <div style="text-align: center; margin-top: 10px;">
+                        <a id="presentationLink" href="#" target="_blank" class="primary-btn">Download Presentation Slides (PDF)</a>
+                    </div>
                 </div>
                 <div class="game-details" id="modalDetail"></div>
             </div>
@@ -427,6 +430,7 @@
 					title: 'If I Ruled the World', 
 					summary: 'A creative icebreaker that doubles as a memory challenge, perfect for practicing conditional clauses and building rapport.',
 					videoSrc: 'videos/game1_explainer.mp4', // Video for Game 1
+					pdfSrc: 'presentations/IfIRuledTheWorld.pdf',
 					detail: `
 						<h4 class="mt-3">1. Context and Coordination</h4>
 						<p><strong>Activity Performed:</strong> "If I Ruled the World" was implemented as a dynamic warm-up and fluency-building game. It was particularly effective when aligned with grammar units on conditional tenses. A circular seating arrangement proved essential, as it fostered a collaborative environment and allowed the memory chain aspect of the game to function effectively.</p>
@@ -445,6 +449,7 @@
 					title: 'I Couldn’t Disagree More', 
 					summary: 'A fast-paced game of rebuttal that trains students to build arguments and justify their opinions under pressure.',
 					videoSrc: 'videos/game2_explainer.mp4', // Video for Game 2
+					pdfSrc: 'presentations/ICoudntDisagreeMore.pdf',
 					detail: `
 						<h4 class="mt-3">1. Context and Coordination</h4>
 						<p><strong>Activity Performed:</strong> This activity was integrated into a debate unit, using controversial statements on role cards to spark discussion. Arranging students in facing pairs was a simple but powerful choice that fostered a sense of direct, focused argumentation.</p>
@@ -463,6 +468,7 @@
 					title: 'Point of Information Game', 
 					summary: 'A formal debate simulation that teaches students how to gracefully handle interruptions and think on their feet.',
 					videoSrc: 'videos/game3_explainer.mp4', // Video for Game 3
+					pdfSrc: 'presentations/PointOfInformation.pdf',
 					detail: `
 						<h4 class="mt-3">1. Context and Coordination</h4>
 						<p><strong>Activity Performed:</strong> This game was used to introduce formal debate procedures, with teacher modeling proving crucial for initial comprehension. Simulating a parliamentary-style debate by arranging the class into two opposing lines effectively set the stage for structured interaction.</p>
@@ -481,6 +487,7 @@
 					title: 'Balloon Debates', 
 					summary: 'A role-playing game that encourages persuasive storytelling and creative argumentation.',
 					videoSrc: 'videos/game4_explainer.mp4', // Video for Game 4
+					pdfSrc: 'presentations/HotAirBalloonDebate.pdf',
 					detail: `
 						<h4 class="mt-3">1. Context and Coordination</h4>
 						<p><strong>Activity Performed:</strong> This served as a capstone activity, integrating skills of persuasion, impersonation, and argumentation. By assigning roles (famous people, professions), the debate was framed as a high-stakes performance, with students arguing for their survival in a falling hot air balloon.</p>
@@ -595,6 +602,9 @@
 				const videoSource = videoPlayer.querySelector('source');
 				videoSource.setAttribute('src', data.videoSrc);
 				videoPlayer.load(); // Important: This tells the player to load the new source
+
+				const presentationLink = document.getElementById('presentationLink');
+				presentationLink.setAttribute('href', data.pdfSrc);
 
 				modal.style.display = 'block';
 				const modalContent = modal.querySelector('.modal-content');
